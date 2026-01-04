@@ -1,12 +1,20 @@
 import numpy as np
-# Gradient numérique
+
+""" Méthode 1 : Gradient numérique """
 
 def gradient_numerique(f, x, h=1e-5):
     """
     Calcule le gradient numérique de f en x par différences finies
-    f : fonction f(x)
-    x : np.array([x, y])
+    Approximation de la dérivée avec f'(x) = (f(x+h) - f(x)) / h
+    C'est la pente entre deux points très proches
+
+    Paramètres:
+    f : fonction à dériver, f(x)
+    x : point où calculer le gradient, np.array([x, y])
     h : petit pas
+
+    Retourne:
+    gradient : np.array([df/dx, df/dy])
     """
     grad = np.zeros_like(x)
 
@@ -22,9 +30,15 @@ def gradient_numerique(f, x, h=1e-5):
 
     return grad
 
-# Nombres duaux, dérivée automatique 
+""" Méthode 2 : nombres duaux, dérivation automatique """
 
 class DualNumber:
+    """
+    Nombre dual : a + b*ε  où ε² = 0
+    Quand on calcule f(x + ε), on obtient f(x) + f'(x)*ε
+    La partie duale contient automatiquement la dérivée
+    """
+
     def __init__(self, real, dual=0.0):
         self.real = real
         self.dual = dual
@@ -34,6 +48,7 @@ class DualNumber:
         return f"({self.real} + {self.dual}ε)"
 
     def __add__(self, other):
+        """ Addition : (a + bε) + (c + dε) = (a+c) + (b+d)ε """
         if isinstance(other, DualNumber):
             return DualNumber(self.real + other.real,
                               self.dual + other.dual)
@@ -43,6 +58,7 @@ class DualNumber:
     __radd__ = __add__
 
     def __sub__(self, other):
+        """ Soustraction : (a + bε) - (c + dε) = (a-c) + (b-d)ε """
         if isinstance(other, DualNumber):
             return DualNumber(self.real - other.real,
                               self.dual - other.dual)
@@ -53,6 +69,7 @@ class DualNumber:
         return DualNumber(other - self.real, -self.dual)
 
     def __mul__(self, other):
+        """ Multiplication : (a + bε) * (c + dε) = ac + (ad + bc)ε """
         if isinstance(other, DualNumber):
             return DualNumber(self.real * other.real,
                               self.real * other.dual + self.dual * other.real)
@@ -62,12 +79,13 @@ class DualNumber:
     __rmul__ = __mul__
 
     def __pow__(self, power):
+        """ Puissance : (a + bε)^n = a^n + n * a^(n-1) * b * ε """
         return DualNumber(
             self.real ** power,
             power * self.real ** (power - 1) * self.dual
         )
 
-    # Fonctions mathématiques
+    """ Fonctions mathématiques """
 
     def exp(self):
         """ Exponentielle : dérivée de exp(x) = exp(x)"""
