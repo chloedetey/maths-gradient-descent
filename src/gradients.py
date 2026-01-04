@@ -94,7 +94,7 @@ class DualNumber:
 
     def sin(self):
         """ Sinus : dérivée de sin(x) = cos(x)"""
-        return DualNumber(no.sin(self.real),
+        return DualNumber(np.sin(self.real),
                           np.cos(self.real) * self.dual)
     
     def cos(self):
