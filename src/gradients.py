@@ -111,9 +111,27 @@ class DualNumber:
         return DualNumber(np.log(self.real),
                           self.dual / self.real)
     
-    # Fonctions uitlitaires pour utiliser exp, sin, cos
-    """TO DO - NEXT COMMIT"""
+    """ Fonctions utilitaires pour utiliser exp, sin, cos avec DualNumber ou float """
 
+    def dual_exp(x):
+        if isinstance(x, DualNumber):
+            return x.exp()
+        return np.exp(x)
+
+    def dual_sin(x):
+        if isinstance(x, DualNumber):
+            return x.sin()
+        return np.sin(x)
+
+    def dual_cos(x):
+        if isinstance(x, DualNumber):
+            return x.cos()
+        return np.cos(x)
+
+    def dual_sqrt(x):
+        if isinstance(x, DualNumber):
+            return x.sqrt()
+        return np.sqrt(x)     
 
 def gradient_dual(f, x):
     """
