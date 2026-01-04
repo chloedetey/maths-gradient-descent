@@ -22,12 +22,16 @@ def gradient_numerique(f, x, h=1e-5):
 
     return grad
 
-# Nombres duaux , dérivée automatique 
+# Nombres duaux, dérivée automatique 
 
 class DualNumber:
     def __init__(self, real, dual=0.0):
         self.real = real
         self.dual = dual
+    
+    def __repr__(self):
+        """ Afficher joliment le nombre dual"""
+        return f"({self.real} + {self.dual}ε)"
 
     def __add__(self, other):
         if isinstance(other, DualNumber):
@@ -62,6 +66,35 @@ class DualNumber:
             self.real ** power,
             power * self.real ** (power - 1) * self.dual
         )
+
+    # Fonctions mathématiques
+
+    def exp(self):
+        """ Exponentielle : dérivée de exp(x) = exp(x)"""
+        e = np.exp(self.real)
+        return DualNumber(e, e * self.dual)
+
+    def sin(self):
+        """ Sinus : dérivée de sin(x) = cos(x)"""
+        return DualNumber(no.sin(self.real),
+                          np.cos(self.real) * self.dual)
+    
+    def cos(self):
+        """ Cosinus : dérivée de cos(x) = -sin(x)"""
+        return DualNumber(np.cos(self.real),
+                          -np.sin(self.real) * self.dual)
+    def sqrt(self):
+        """ Racine carrée : dérivée de sqrt(x) = 1/(2*sqrt(x))"""
+        s = np.sqrt(self.real)
+        return DualNumber(s, self.dual / (2 * s))
+    
+    def log(self):
+        """ Logarithme : dérivée de log(x) = 1/x"""
+        return DualNumber(np.log(self.real),
+                          self.dual / self.real)
+    
+    # Fonctions uitlitaires pour utiliser exp, sin, cos
+    """TO DO - NEXT COMMIT"""
 
 
 def gradient_dual(f, x):
