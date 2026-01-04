@@ -133,18 +133,28 @@ class DualNumber:
             return x.sqrt()
         return np.sqrt(x)     
 
+""" Fonction gradient avec dual numbers """
+
 def gradient_dual(f, x):
     """
     Calcule le gradient de f en x avec les nombres duaux
+
+    - Pour trouver df/dx : on met ε sur x (dual=1) et pas sur y (dual=0)
+    - Pour trouver df/dy : on met ε sur y et pas sur x
+    - La partie "dual" du résultat contient la dérivée
+
+    Note : la fonction f doit utiliser les opérations compatibles avec DualNumber (fonctions utilitaires) pour Ackley
     """
-    grad = np.zeros_like(x)
+    grad = np.zeros_like(x, dtype=float) # dtype=float pour éviter les erreurs
 
-    # dérivée par rapport à x
+    # Dérivée par rapport à x
     x_dual = [DualNumber(x[0], 1.0), DualNumber(x[1], 0.0)]
-    grad[0] = f(x_dual).dual
+    result = f(x_dual)
+    grad[0] = result.dual
 
-    # dérivée par rapport à y
+    # Dérivée par rapport à y
     y_dual = [DualNumber(x[0], 0.0), DualNumber(x[1], 1.0)]
-    grad[1] = f(y_dual).dual
+    result = f(y_dual)
+    grad[1] = result.dual
 
     return grad
