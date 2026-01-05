@@ -56,3 +56,29 @@ def plot_surface_3d(f, xlim=(-5, 5), ylim=(-5, 5), title="Surface 3D"):
     ax.set_title(title)
     
     return fig, ax
+
+def plot_convergence(trajectories_dict, f, title="Convergence"):
+    """
+    Trace le coût f(x,y) en fonction du nombre d'itérations.
+    
+    Ça permet de voir quel algorithme converge le plus vite.
+    Plus la courbe descend vite, mieux c'est.
+    
+    trajectories_dict : un dictionnaire {"nom_algo": trajectoire}
+    f : la fonction qu'on optimise
+    """
+    plt.figure(figsize=(10, 6))
+    
+    for name, trajectory in trajectories_dict.items():
+        # On calcule le coût à chaque point de la trajectoire
+        costs = [f(point) for point in trajectory]
+        iterations = range(len(costs))
+        
+        plt.plot(iterations, costs, label=name, linewidth=2)
+    
+    plt.xlabel("Itérations")
+    plt.ylabel("Coût f(x, y)")
+    plt.title(title)
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    plt.yscale('log')  # Echelle log pour mieux voir quand les valeurs sont très différentes
