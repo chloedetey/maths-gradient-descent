@@ -107,3 +107,49 @@ def plot_gradient_norm(trajectories_dict, grad_f, title="Norme du gradient"):
     plt.legend()
     plt.grid(True, alpha=0.3)
     plt.yscale('log')
+
+def plot_comparison(f, trajectories_dict, xlim=(-5, 5), ylim=(-5, 5), title="Comparaison des algorithmes"):
+    """
+    Affiche les contours + toutes les trajectoires sur le même graphe.
+    
+    Utile pour comparer visuellement les chemins des différents algos.
+    On voit directement lequel fait des zigzags, lequel va droit au but, etc.
+    
+    Légende :
+    carré = point de départ
+    étoile = point d'arrivée
+    """
+    # Une couleur par algorithme pour s'y retrouver
+    colors = {
+        "Simple": "red",
+        "Momentum": "blue",
+        "Nesterov": "green",
+        "Adam": "purple"
+    }
+    
+    plt.figure(figsize=(10, 8))
+    
+    # D'abord les contours en fond
+    plot_contours(f, xlim, ylim)
+    
+    # Ensuite chaque trajectoire par-dessus
+    for name, trajectory in trajectories_dict.items():
+        color = colors.get(name, "black")
+        trajectory = np.array(trajectory)
+        
+        # La trajectoire avec des points
+        plt.plot(trajectory[:, 0], trajectory[:, 1], '-o',
+                 color=color, markersize=3, linewidth=1.5, label=name)
+        
+        # Carré = point de départ
+        plt.plot(trajectory[0, 0], trajectory[0, 1], 's',
+                 color=color, markersize=10)
+        
+        # Etoile = point d'arrivée
+        plt.plot(trajectory[-1, 0], trajectory[-1, 1], '*',
+                 color=color, markersize=15)
+    
+    plt.xlabel("x")
+    plt.ylabel("y")
+    plt.title(title)
+    plt.legend()
