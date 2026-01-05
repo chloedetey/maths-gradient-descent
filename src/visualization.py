@@ -82,3 +82,28 @@ def plot_convergence(trajectories_dict, f, title="Convergence"):
     plt.legend()
     plt.grid(True, alpha=0.3)
     plt.yscale('log')  # Echelle log pour mieux voir quand les valeurs sont très différentes
+
+def plot_gradient_norm(trajectories_dict, grad_f, title="Norme du gradient"):
+    """
+    Trace la norme du gradient au fil des itérations.
+    
+    Quand la norme est grande : on est sur une pente forte, loin du minimum.
+    Quand la norme est petite : on est proche du minimum (pente quasi plate).
+    
+    C'est utile pour voir si l'algo a vraiment convergé ou s'il s'est juste arrêté.
+    """
+    plt.figure(figsize=(10, 6))
+    
+    for name, trajectory in trajectories_dict.items():
+        # Norme du gradient à chaque étape
+        norms = [np.linalg.norm(grad_f(point)) for point in trajectory]
+        iterations = range(len(norms))
+        
+        plt.plot(iterations, norms, label=name, linewidth=2)
+    
+    plt.xlabel("Itérations")
+    plt.ylabel("||∇f||")  # Notation maths pour la norme du gradient
+    plt.title(title)
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    plt.yscale('log')
