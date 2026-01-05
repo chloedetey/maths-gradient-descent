@@ -2,6 +2,20 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D  # Pour les graphes 3D
 
+""" 
+Visualisations
+
+Toutes les fonctions pour afficher les résultats :
+- plot_contours : courbes de niveau en 2D
+- plot_trajectory : tracer le chemin d'un algo
+- plot_surface_3d : voir la fonction en 3D
+- plot_convergence : est-ce que le coût diminue bien ?
+- plot_gradient_norm : est-ce que le gradient tend vers 0 ?
+- plot_comparison : comparer tous les algos sur un même graphe
+"""
+
+""" Contours 2D : pour voir les courbes de niveau """
+
 def plot_contours(f, xlim=(-5, 5), ylim=(-5, 5), levels=50):
     """
     Trace les contours 2D de la fonction f(x, y)
@@ -19,6 +33,8 @@ def plot_contours(f, xlim=(-5, 5), ylim=(-5, 5), levels=50):
     plt.xlabel("x")
     plt.ylabel("y")
 
+""" Trajectoire : trace le chemin suivi par un algorithme """
+
 def plot_trajectory(trajectory, color="red", label=None):
     """
     Trace la trajectoire d'un algorithme sur un graphique existant
@@ -26,6 +42,8 @@ def plot_trajectory(trajectory, color="red", label=None):
     trajectory = np.array(trajectory)
     plt.plot(trajectory[:, 0], trajectory[:, 1], "-o",
              color=color, markersize=3, label=label)
+    
+""" Surface 3D : visualisation de la fonction en relief """
     
 def plot_surface_3d(f, xlim=(-5, 5), ylim=(-5, 5), title="Surface 3D"):
     """
@@ -57,6 +75,8 @@ def plot_surface_3d(f, xlim=(-5, 5), ylim=(-5, 5), title="Surface 3D"):
     
     return fig, ax
 
+""" Convergence : voir si le coût diminue au fil des itérations """
+
 def plot_convergence(trajectories_dict, f, title="Convergence"):
     """
     Trace le coût f(x,y) en fonction du nombre d'itérations.
@@ -83,6 +103,8 @@ def plot_convergence(trajectories_dict, f, title="Convergence"):
     plt.grid(True, alpha=0.3)
     plt.yscale('log')  # Echelle log pour mieux voir quand les valeurs sont très différentes
 
+""" Norme du gradient : vérifie qu'on approche bien d'un minimum """
+
 def plot_gradient_norm(trajectories_dict, grad_f, title="Norme du gradient"):
     """
     Trace la norme du gradient au fil des itérations.
@@ -107,6 +129,8 @@ def plot_gradient_norm(trajectories_dict, grad_f, title="Norme du gradient"):
     plt.legend()
     plt.grid(True, alpha=0.3)
     plt.yscale('log')
+
+""" Comparaison : tous les algorithmes sur le même graphe """
 
 def plot_comparison(f, trajectories_dict, xlim=(-5, 5), ylim=(-5, 5), title="Comparaison des algorithmes"):
     """
