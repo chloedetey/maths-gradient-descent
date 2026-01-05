@@ -68,4 +68,21 @@ def ackley(x):
     return -20 * np.exp(-0.2 * np.sqrt(0.5 * (x1**2 + x2**2))) \
            - np.exp(0.5 * (np.cos(2*np.pi*x1) + np.cos(2*np.pi*x2))) \
            + np.e + 20
+
+""" Version d'Ackley compatible avec les nombres duaux """
+# Utilisée avec gradient_dual
+
+def ackley_dual_compatible(x):
+    """
+    Ackley pour les nombres duaux.
+    Utilise les fonctions de src.gradients pour être compatible.
+    """
+    from src.gradients import dual_exp, dual_cos, dual_sqrt
+    
+    x1, x2 = x[0], x[1]
+    
+    term1 = -20 * dual_exp(-0.2 * dual_sqrt(0.5 * (x1**2 + x2**2)))
+    term2 = -dual_exp(0.5 * (dual_cos(2 * 3.14159265359 * x1) + dual_cos(2 * 3.14159265359 * x2)))
+    
+    return term1 + term2 + 2.71828182846 + 20
            
