@@ -11,21 +11,21 @@ def gradient_descent(f, grad_f, x0, learning_rate=0.1, max_iter=1000, tol=1e-6):
     max_iter : nombre max d'itérations
     tol : critère d'arrêt (norme du gradient)
     """
-    x = x0.copy() #modifie pas le point initial 
+    x = x0.copy() # Ne modifie pas le point initial 
     trajectory = [x.copy()]
 
     for i in range(max_iter):
         grad = grad_f(x)
 
-        # critère d'arrêt
+        # Critère d'arrêt
         if np.linalg.norm(grad) < tol:
             break
 
-        # mise à jour
+        # Mise à jour
         x = x - learning_rate * grad
         trajectory.append(x.copy())
 
-    return x, np.array(trajectory) #x : solution finale , trajectory : le chemin suivi 
+    return x, np.array(trajectory) # x : solution finale , trajectory : le chemin suivi 
 
 def gradient_descent_momentum(
     f, grad_f, x0,
@@ -47,11 +47,11 @@ def gradient_descent_momentum(
         if np.linalg.norm(grad) < tol:
             break
 
-        # mise à jour de la vitesse (momentum)
-        v = momentum * v + grad
+        # Mise à jour de la vitesse (momentum)
+        v = momentum * v + learning_rate * grad
 
-        # mise à jour de la position
-        x = x - learning_rate * v
+        # Mise à jour de la position
+        x = x - v
         trajectory.append(x.copy())
 
     return x, np.array(trajectory)
@@ -71,7 +71,7 @@ def gradient_descent_nesterov(
     trajectory = [x.copy()]
 
     for i in range(max_iter):
-        # point anticipé
+        # Point anticipé
         x_lookahead = x - momentum * v
 
         grad = grad_f(x_lookahead)
@@ -79,8 +79,8 @@ def gradient_descent_nesterov(
         if np.linalg.norm(grad) < tol:
             break
 
-        v = momentum * v + grad
-        x = x - learning_rate * v
+        v = momentum * v + learning_rate * grad
+        x = x - v
         trajectory.append(x.copy())
 
     return x, np.array(trajectory)
@@ -108,15 +108,15 @@ def gradient_descent_adam(
         if np.linalg.norm(grad) < tol:
             break
 
-        # moments
+        # Moments
         m = beta1 * m + (1 - beta1) * grad
         v = beta2 * v + (1 - beta2) * (grad ** 2)
 
-        # correction du biais
+        # Correction du biais
         m_hat = m / (1 - beta1 ** t)
         v_hat = v / (1 - beta2 ** t)
 
-        # mise à jour
+        # Mise à jour
         x = x - learning_rate * m_hat / (np.sqrt(v_hat) + epsilon)
         trajectory.append(x.copy())
 
