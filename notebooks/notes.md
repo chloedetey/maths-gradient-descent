@@ -1,4 +1,4 @@
-# Notes de correction - exp-draft.ipynb
+# Notes de correction - experiments.ipynb
 
 ## Modifications apportées
 

@@ -19,7 +19,7 @@ Projet réalisé dans le cadre d'un TP de mathématiques sur l'optimisation num�
 │   └── visualization.py    # Fonctions de visualisation
 │
 ├── notebooks/              # Expériences
-│   ├── exp-draft.ipynb     # Notebook principal avec toutes les expériences
+│   ├── experiments.ipynb   # Notebook principal avec toutes les expériences
 │   ├── notes.md            # Notes sur les corrections et observations
 │   └── notes-resultats.md  # Résultats attendus pour chaque graphe
 │
@@ -53,7 +53,7 @@ Projet réalisé dans le cadre d'un TP de mathématiques sur l'optimisation num�
 pip install -r requirements.txt
 
 # Lancer le notebook
-jupyter notebook notebooks/exp-draft.ipynb
+jupyter notebook notebooks/experiments.ipynb
 ```
 
 Les graphes sont sauvegardés dans `figures/temp/`.
