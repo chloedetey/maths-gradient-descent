@@ -11,7 +11,7 @@ def gradient_descent(f, grad_f, x0, learning_rate=0.1, max_iter=1000, tol=1e-6):
     max_iter : nombre max d'itérations
     tol : critère d'arrêt (norme du gradient)
     """
-    x = x0.copy() # Ne modifie pas le point initial 
+    x = x0.copy()  # Ne modifie pas le point initial
     trajectory = [x.copy()]
 
     for i in range(max_iter):
@@ -21,11 +21,11 @@ def gradient_descent(f, grad_f, x0, learning_rate=0.1, max_iter=1000, tol=1e-6):
         if np.linalg.norm(grad) < tol:
             break
 
-        # Mise à jour : on descent dans la direction opposée au gradient
+        # Mise à jour : on descend dans la direction opposée au gradient
         x = x - learning_rate * grad
         trajectory.append(x.copy())
 
-    return x, np.array(trajectory) # x : solution finale , trajectory : le chemin suivi 
+    return x, np.array(trajectory)  # x : solution finale, trajectory : le chemin suivi
 
 def gradient_descent_momentum(
     f, grad_f, x0,

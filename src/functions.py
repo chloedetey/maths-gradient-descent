@@ -1,32 +1,35 @@
-#pour les fonctions test 
+# Pour les fonctions test
 import numpy as np
 
-##pour des fonctions simples
+# Pour des fonctions simples
 
 def quadratique(x, gamma=1.0):
     """
+    Fonction quadratique
     f(x, y) = x^2 + gamma * y^2
     """
     return x[0]**2 + gamma * x[1]**2
-##ici x[0]= X et x[1]= y
+# Ici x[0] = x et x[1] = y
 
 def exponentielle(x):
     """
+    Fonction exponentielle
     g(x, y) = 1 - exp(-10 x^2 - y^2)
     """
     return 1 - np.exp(-10 * x[0]**2 - x[1]**2)
 
 def polynomiale(x):
     """
+    Fonction polynomiale
     h(x, y) = x^2 y - 2 x y^3 + 3 x y + 4
     """
     return x[0]**2 * x[1] - 2 * x[0] * x[1]**3 + 3 * x[0] * x[1] + 4
 
-###test avec des fonctions classiques test demandé dans l'énnoncé 
+# Test avec des fonctions classiques demandé dans l'énoncé
 
 def rosenbrock(x):
     """
-    Rosenbrock function
+    Fonction de Rosenbrock
     Minimum global en (1, 1)
     """
     return (1 - x[0])**2 + 100 * (x[1] - x[0]**2)**2
@@ -34,7 +37,7 @@ def rosenbrock(x):
 
 def beale(x):
     """
-    Beale function
+    Fonction de Beale
     Minimum global en (3, 0.5)
     """
     x1, x2 = x[0], x[1]
@@ -45,7 +48,7 @@ def beale(x):
 
 def booth(x):
     """
-    Booth function
+    Fonction de Booth
     Minimum global en (1, 3)
     """
     return (x[0] + 2*x[1] - 7)**2 + (2*x[0] + x[1] - 5)**2
@@ -53,7 +56,7 @@ def booth(x):
 
 def himmelblau(x):
     """
-    Himmelblau function
+    Fonction de Himmelblau
     4 minima globaux
     """
     return (x[0]**2 + x[1] - 11)**2 + (x[0] + x[1]**2 - 7)**2
@@ -61,7 +64,7 @@ def himmelblau(x):
 
 def ackley(x):
     """
-    Ackley function
+    Fonction d'Ackley
     Minimum global en (0, 0)
     """
     x1, x2 = x[0], x[1]
@@ -75,7 +78,7 @@ def ackley(x):
 def ackley_dual_compatible(x):
     """
     Ackley pour les nombres duaux.
-    Utilise les fonctions de src.gradients pour être compatible.
+    Utilise les fonctions de src.gradients pour être compatible
     """
     from src.gradients import dual_exp, dual_cos, dual_sqrt
     

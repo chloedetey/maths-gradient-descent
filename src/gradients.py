@@ -18,12 +18,12 @@ def gradient_numerique(f, x, h=1e-5):
     """
     grad = np.zeros_like(x)
 
-    # dérivée par rapport à x
+    # Dérivée par rapport à x
     x_plus_h = x.copy()
     x_plus_h[0] += h
     grad[0] = (f(x_plus_h) - f(x)) / h
 
-    # dérivée par rapport à y
+    # Dérivée par rapport à y
     y_plus_h = x.copy()
     y_plus_h[1] += h
     grad[1] = (f(y_plus_h) - f(x)) / h
@@ -68,6 +68,10 @@ class DualNumber:
     def __rsub__(self, other):
         return DualNumber(other - self.real, -self.dual)
 
+    def __neg__(self):
+        """ Négation : -(a + bε) = -a - bε """
+        return DualNumber(-self.real, -self.dual)
+
     def __mul__(self, other):
         """ Multiplication : (a + bε) * (c + dε) = ac + (ad + bc)ε """
         if isinstance(other, DualNumber):
@@ -88,7 +92,7 @@ class DualNumber:
     """ Fonctions mathématiques """
 
     def exp(self):
-        """ Exponentielle : dérivée de exp(x) = exp(x)"""
+        """ Exponentielle : dérivée de exp(x) = exp(x) """
         e = np.exp(self.real)
         return DualNumber(e, e * self.dual)
 
@@ -102,7 +106,7 @@ class DualNumber:
         return DualNumber(np.cos(self.real),
                           -np.sin(self.real) * self.dual)
     def sqrt(self):
-        """ Racine carrée : dérivée de sqrt(x) = 1/(2*sqrt(x))"""
+        """ Racine carrée : dérivée de sqrt(x) = 1/(2*sqrt(x)) """
         s = np.sqrt(self.real)
         return DualNumber(s, self.dual / (2 * s))
     
