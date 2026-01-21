@@ -1,7 +1,7 @@
-# Descente de Gradient - Guide Complet
+# Descente de Gradient - Résultats obtenus
 
 Ce document contient :
-1. **Théorie** : explications pour comprendre et présenter le sujet
+1. **Théorie** : explications pour comprendre le sujet
 2. **Résultats** : analyse de chaque graphe pour le rapport et l'oral
 
 ---
@@ -226,7 +226,7 @@ R : Quand l'algorithme s'arrête car le gradient est devenu quasi-nul (on est ar
 # PARTIE 2 : ANALYSE DES GRAPHES
 
 Guide pour le rapport et l'oral. Pour chaque graphe :
-- **Pertinence** : ⭐⭐⭐ (très), ⭐⭐ (moyen), ⭐ (peu)
+- **Pertinence** : ⭐ = dans le rapport, très pertinent
 - **Rapport** : version courte à écrire
 - **Oral** : notes détaillées si le prof pose des questions
 - **Explication** : est-ce normal ? erreurs ? comment interpréter ?
@@ -593,7 +593,7 @@ Graphe parfait et très parlant. Simple (ligne rouge plate en haut) ne converge 
 
 ---
 
-## Ordre recommandé pour le rapport
+## Ordre pour le rapport
 
 ### Partie 1 : Présentation des algorithmes (fonction quadratique)
 1. **quad_comparison.png** → présente les 4 algos et leurs trajectoires
@@ -616,12 +616,12 @@ Graphe parfait et très parlant. Simple (ligne rouge plate en haut) ne converge 
 ### Partie 5 : Utilité du momentum
 11. **echec5_zigzags_ravine.png** → Simple zigzague, Momentum traverse
 
-### Optionnels (pour étoffer si besoin)
+### Optionnels 
 - **g_comparison.png** → illustre les plateaux
 - **ackley_gradient_comparison.png** → dual numbers vs numérique
 - **echec2** → learning rate trop petit (stagnation)
 - **echec4** → momentum trop fort (oscillations)
 
-### À éviter
+### Pas dedans
 - booth → trop facile, rien d'intéressant
 - h → cas confus, pas parlant
