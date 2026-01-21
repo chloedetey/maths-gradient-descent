@@ -235,7 +235,7 @@ Guide pour le rapport et l'oral. Pour chaque graphe :
 
 ## 1. Fonction Quadratique f(x,y) = x² + 2y²
 
-### quad_simple.png ⭐⭐
+### quad_simple.png
 **Rapport :**
 La descente de gradient simple converge vers le minimum (0,0) mais avec des zigzags. Ces oscillations viennent du fait que la fonction est plus "pentue" en y qu'en x (coefficient 2), donc l'algorithme corrige trop fort en y à chaque pas.
 
@@ -247,7 +247,7 @@ Graphe correct et attendu. Les zigzags sont normaux pour une fonction quadratiqu
 
 ---
 
-### quad_comparison.png ⭐⭐⭐
+### quad_comparison.png ⭐
 **Rapport :**
 Les 4 algorithmes convergent vers (0,0). Sur cette fonction quadratique simple, Nesterov converge le plus vite (67 itérations), suivi de Simple (74). Momentum fait des oscillations importantes à cause de l'inertie accumulée (148 itérations). Adam, bien qu'il ait une trajectoire directe, est le plus lent ici (241 itérations).
 
@@ -262,7 +262,7 @@ Graphe correct. Le fait qu'Adam soit le plus lent sur une fonction simple est NO
 
 ---
 
-### quad_convergence.png ⭐⭐⭐
+### quad_convergence.png ⭐
 **Rapport :**
 Le graphe montre le coût (valeur de f) en fonction des itérations. Tous les algorithmes atteignent un coût proche de 0. L'ordre de convergence est : Nesterov (67), Simple (74), Momentum (148), Adam (241).
 
@@ -276,7 +276,7 @@ Graphe correct. Les oscillations de Momentum (dents de scie) sont normales et co
 
 ## 2. Fonctions g et h
 
-### g_comparison.png ⭐⭐
+### g_comparison.png
 **Rapport :**
 La fonction g = 1 - exp(-10x² - y²) a un plateau loin de l'origine où le gradient est quasi nul. Les algorithmes démarrent sur ce plateau et descendent vers le minimum en (0,0). Nesterov converge le plus rapidement.
 
@@ -288,7 +288,7 @@ Graphe correct. Si le point de départ est trop loin (ex: (3,3)), le gradient es
 
 ---
 
-### g_convergence.png ⭐⭐
+### g_convergence.png
 **Rapport :**
 Nesterov converge en 44 itérations, Momentum en 86, Simple en 129 et Adam en 217. Sur cette fonction, l'accélération de Nesterov est particulièrement efficace.
 
@@ -300,7 +300,7 @@ Graphe correct. L'ordre Nesterov > Momentum > Simple > Adam est cohérent avec l
 
 ---
 
-### h_comparison.png ⭐
+### h_comparison.png
 **Rapport :**
 La fonction polynomiale h a un paysage complexe. Les algorithmes convergent vers différents points selon leurs trajectoires. Adam converge vers un point selle près de l'origine tandis que les autres trouvent un minimum local.
 
@@ -312,7 +312,7 @@ Graphe un peu problématique mais acceptable. Adam se fait piéger à cause du l
 
 ---
 
-### h_convergence.png ⭐
+### h_convergence.png
 **Rapport :**
 Les courbes montrent qu'Adam stagne à un coût plus élevé (point selle) tandis que les autres algorithmes atteignent un coût plus bas (minimum local).
 
@@ -326,7 +326,7 @@ Graphe correct mais pas très utile. Éviter dans le rapport car ça complique l
 
 ## 3. Rosenbrock (vallée en banane)
 
-### rosenbrock_comparison.png ⭐⭐⭐
+### rosenbrock_comparison.png ⭐
 **Rapport :**
 La fonction de Rosenbrock est un test classique en optimisation. Elle forme une vallée étroite et courbée (visible sur les lignes de niveau). Seul Adam (orange) fait des progrès visibles vers le minimum (1,1), en suivant la vallée. Simple, Momentum et Nesterov sont quasi-immobiles près du point de départ (-1, 1) malgré 2001 itérations.
 
@@ -338,7 +338,7 @@ Graphe parfait et très important. Le fait que seul Adam soit visible est normal
 
 ---
 
-### rosenbrock_convergence.png ⭐⭐⭐
+### rosenbrock_convergence.png ⭐
 **Rapport :**
 Adam (orange) atteint un coût très faible (≈10⁻⁸) en ~1500 itérations. Nesterov (vert) converge aussi mais plus lentement, atteignant ~10⁻⁸ à 2000 itérations. Simple (rouge) stagne autour de 10⁻¹. Momentum (bleu) est superposé avec Simple.
 
@@ -352,7 +352,7 @@ Graphe parfait. Adam converge vite (1568 iter), Nesterov rattrape vers 2000 iter
 
 ## 4. Booth
 
-### booth_comparison.png ⭐
+### booth_comparison.png
 **Rapport :**
 Tous les algorithmes convergent facilement vers le minimum (1,3). Cette fonction est relativement simple et ne pose pas de difficulté particulière.
 
@@ -364,7 +364,7 @@ Graphe correct mais sans intérêt. Tous les algos convergent car la fonction es
 
 ---
 
-### booth_convergence.png ⭐
+### booth_convergence.png
 **Rapport :**
 Convergence rapide pour tous (< 100 itérations pour la plupart). Les différences entre algorithmes sont moins marquées que sur des fonctions difficiles.
 
@@ -378,7 +378,7 @@ Graphe correct mais inutile. Quand tout marche bien, on ne voit pas les différe
 
 ## 5. Beale
 
-### beale_comparison.png ⭐⭐
+### beale_comparison.png
 **Rapport :**
 La fonction de Beale a des gradients qui varient fortement selon la zone. Tous les algorithmes convergent vers le minimum (3, 0.5) mais avec des vitesses différentes.
 
@@ -390,7 +390,7 @@ Graphe correct. Beale est une fonction classique de benchmark. Les résultats so
 
 ---
 
-### beale_convergence.png ⭐⭐
+### beale_convergence.png
 **Rapport :**
 Momentum et Nesterov convergent plus vite qu'Adam sur cette fonction. Simple est le plus lent.
 
@@ -404,7 +404,7 @@ Graphe correct et intéressant. Montre qu'Adam n'est pas toujours le meilleur - 
 
 ## 6. Himmelblau
 
-### himmelblau_comparison.png ⭐⭐⭐
+### himmelblau_comparison.png ⭐
 **Rapport :**
 Himmelblau possède 4 minima globaux équivalents (visibles aux 4 coins). Tous les algorithmes convergent vers le même minimum (3,2) depuis le point de départ (0,0). Nesterov est le plus rapide (56 iter), suivi de Simple (63), puis Momentum (104) qui fait un dépassement visible avant de converger. Adam est le plus lent (348 iter).
 
@@ -416,7 +416,7 @@ Graphe correct et pédagogique. L'ordre Nesterov (56) > Simple (63) > Momentum (
 
 ---
 
-### himmelblau_convergence.png ⭐⭐
+### himmelblau_convergence.png
 **Rapport :**
 Convergence rapide pour tous les algorithmes (< 100 itérations). Nesterov est légèrement plus rapide.
 
@@ -430,7 +430,7 @@ Graphe correct mais peu informatif. La convergence est trop facile pour voir des
 
 ## 7. Ackley
 
-### ackley_comparison.png ⭐⭐⭐
+### ackley_comparison.png ⭐
 **Rapport :**
 Ackley est une fonction avec des centaines de minima locaux (aspect "boîte à œufs" visible sur les lignes de niveau). Le minimum global est au centre (0,0) en rose. Tous les algorithmes se font piéger immédiatement dans un minimum local près du point de départ (2,2) - les trajectoires sont quasi-invisibles car très courtes.
 
@@ -442,7 +442,7 @@ Graphe parfait pour illustrer les limites de la descente de gradient. L'échec c
 
 ---
 
-### ackley_convergence.png ⭐⭐
+### ackley_convergence.png ⭐
 **Rapport :**
 Toutes les courbes convergent vers ~6.55, qui correspond au minimum local où les algorithmes sont piégés. Le minimum global (valeur 0) n'est jamais atteint. Adam (orange) et Momentum (bleu) oscillent fortement au début avant de se stabiliser.
 
@@ -456,7 +456,7 @@ Graphe correct. La valeur finale ~6.55 (au lieu de 0) prouve qu'on est dans un m
 
 ## 8. Comparaison Gradient Numérique vs Dual Numbers
 
-### ackley_gradient_comparison.png ⭐⭐
+### ackley_gradient_comparison.png
 **Rapport :**
 Les deux méthodes de calcul du gradient (différences finies et nombres duaux) donnent des résultats quasi-identiques. Les nombres duaux sont plus précis car ils calculent la dérivée exacte, sans approximation.
 
@@ -473,7 +473,7 @@ Graphe correct. Les deux méthodes donnent presque la même chose car h = 10⁻�
 
 ## 9. Cas d'échec
 
-### echec1_lr_divergence.png ⭐⭐⭐
+### echec1_lr_divergence.png ⭐
 **Rapport :**
 Quand le learning rate est trop grand (α > 0.5 pour cette fonction), l'algorithme diverge au lieu de converger. α=0.4 (orange) converge le plus vite (33 iter). α=0.1 (vert) converge avec des zigzags (51 iter). α=0.52 et α=0.6 (rouge) divergent avec des oscillations qui s'amplifient.
 
@@ -485,7 +485,7 @@ Graphe parfait et très pédagogique. La limite α = 0.5 est mathématiquement c
 
 ---
 
-### echec1_convergence.png ⭐⭐⭐
+### echec1_convergence.png ⭐
 **Rapport :**
 α=0.4 (orange) converge le plus vite : de 10¹ à 10⁻¹¹ en 30 iter. α=0.1 (vert) converge plus lentement jusqu'à 10⁻⁵. α=0.52 (saumon) et α=0.6 (rouge) DIVERGENT : le coût monte jusqu'à 10⁵ et 10¹⁰ respectivement.
 
@@ -497,7 +497,7 @@ Graphe parfait. Deux courbes descendent (convergence), deux montent (divergence)
 
 ---
 
-### echec2_lr_stagnation.png ⭐⭐
+### echec2_lr_stagnation.png ⭐
 **Rapport :**
 À l'inverse, un learning rate trop petit cause une stagnation sur Rosenbrock. α=0.001 (rouge) avance un peu dans la vallée. α=0.0001 (orange) et α=1e-05 (jaune) sont quasi-immobiles près du départ (-1, 1). Le minimum global (1,1) est marqué en bleu, très loin.
 
@@ -509,7 +509,7 @@ Graphe correct. La stagnation est visible : α=0.001 avance un peu dans la vall�
 
 ---
 
-### echec2_convergence.png ⭐⭐
+### echec2_convergence.png ⭐
 **Rapport :**
 α=0.001 (rouge) descend de ~4 à ~0.1 en 1000 iter - progrès visible mais lent. α=0.0001 (orange) et α=1e-05 (jaune) sont quasi-plats, stagnant autour de 4.
 
@@ -521,7 +521,7 @@ Graphe correct. La différence entre α=0.001 (qui descend) et les deux autres (
 
 ---
 
-### echec3_minima_locaux.png ⭐⭐⭐
+### echec3_minima_locaux.png ⭐
 **Rapport :**
 Trois exécutions avec des points de départ différents sur Ackley : Proche (1,1) en 23 iter, Moyen (3,3) en 21 iter, Loin (5,5) en 20 iter. Seul le départ proche (1,1) se dirige vers le minimum global (0,0) visible au centre en rose. Les trajectoires sont quasi-invisibles car très courtes (piégeage immédiat).
 
@@ -533,7 +533,7 @@ Graphe parfait. Les points de départ (1,1), (3,3), (5,5) sont visibles aux posi
 
 ---
 
-### echec3_convergence.png ⭐⭐⭐
+### echec3_convergence.png ⭐
 **Rapport :**
 Les trois courbes stagnent à des niveaux différents : Proche (1,1) vert à ~3, Moyen (3,3) orange à ~8, Loin (5,5) rouge à ~13. Le seuil de succès (f<0.1) en pointillé bleu n'est atteint par aucune courbe.
 
@@ -545,7 +545,7 @@ Graphe correct mais attention : AUCUNE courbe ne passe sous le seuil 0.1. Même 
 
 ---
 
-### echec4_momentum_oscillations.png ⭐⭐
+### echec4_momentum_oscillations.png ⭐
 **Rapport :**
 β=0.5 (vert) converge en 45 iter avec une spirale serrée vers (0,0). β=0.9, 0.95 et 0.99 font 201 iter avec des spirales de plus en plus grandes. β=0.99 (rose) fait des spirales géantes qui couvrent tout le graphe.
 
@@ -557,7 +557,7 @@ Graphe parfait et très visuel. Les 4 valeurs de β montrent clairement la progr
 
 ---
 
-### echec4_convergence.png ⭐⭐
+### echec4_convergence.png ⭐
 **Rapport :**
 β=0.5 (vert) descend rapidement jusqu'à 10⁻¹¹. β=0.9 (bleu) oscille en dents de scie mais atteint 10⁻⁷. β=0.95 (orange) oscille plus fort, atteint ~10⁻³. β=0.99 (rose) stagne vers 10¹ et ne converge pas vraiment.
 
@@ -569,7 +569,7 @@ Graphe parfait. β=0.5 converge proprement, β=0.9/0.95 oscillent mais convergen
 
 ---
 
-### echec5_zigzags_ravine.png ⭐⭐⭐
+### echec5_zigzags_ravine.png ⭐
 **Rapport :**
 Sur une fonction très mal conditionnée (f = x² + 100y², γ=100), Simple (rouge) fait des zigzags verticaux extrêmes qui occupent tout le graphe mais n'avancent pas vers (0,0). Momentum (bleu) zigzague aussi mais converge vers l'optimum. Les deux font 301 itérations.
 
@@ -581,7 +581,7 @@ Graphe parfait et très visuel. Simple (rouge) rebondit verticalement de +10 à 
 
 ---
 
-### echec5_convergence.png ⭐⭐⭐
+### echec5_convergence.png ⭐
 **Rapport :**
 Simple (rouge) STAGNE à ~10⁴ et ne converge pas du tout ! Momentum (bleu) descend en dents de scie de 10⁴ jusqu'à 10⁻¹⁰ en 300 itérations. C'est une différence de 14 ordres de grandeur.
 
